@@ -89,12 +89,12 @@ total using aosoa: 3.85
 
 # Interpretation
 
-The first scenario, namely `populate`, is favorable to the "array of structure"
-(SoA) representation. Indeed, with this representation, all updates are performed
+The first scenario, namely `populate`, is favorable to the "array of structures"
+(AoS) representation. Indeed, with this representation, all updates are performed
 at consecutive memory locations.
 
-The second scenario, namely `updates`, is favorable to the "structure of array"
-(AoS) representation. Indeed, with this representation, SIMD optimizations are
+The second scenario, namely `updates`, is favorable to the "structure of arrays"
+(SoA) representation. Indeed, with this representation, SIMD optimizations are
 possible, processing batches of up to 16 particles at once on a hardware with
 512-bit registers. Even processing batches 4 particles lead to significant speedups.
 
