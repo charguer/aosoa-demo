@@ -19,7 +19,9 @@ if __name__ == "__main__":
     for script in scripts:  
         options = ''
         # options = '-fopt-info-vec-all 2> bin/' + script + '_infos.txt'
-        os.system('gcc -std=c11 -march=native -Wall -O3 -o bin/' + script + ' src/' + script + '.c ' + options)
+        command = 'gcc -std=c11 -march=native -Wall -O3 -o bin/' + script + ' src/' + script + '.c ' + options
+        print(command)
+        os.system(command)
         total[script] = 0
 
     # quit()
