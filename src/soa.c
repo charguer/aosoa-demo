@@ -2,23 +2,23 @@
 
 typedef struct {
   // Position
-  float* x;
-  float* y;
-  float* z;
+  ALIGNED float* x;
+  ALIGNED float* y;
+  ALIGNED float* z;
   // Velocity
-  float* vx;
-  float* vy;
-  float* vz;
+  ALIGNED float* vx;
+  ALIGNED float* vy;
+  ALIGNED float* vz;
   // Charge
-  float* c;
+  ALIGNED float* c;
   // Mass, volume
-  float* m;
-  float* v;
+  ALIGNED float* m;
+  ALIGNED float* v;
 } particles;
 
 particles data;
 
-inline float* float_array_calloc_aligned(size_t size) {
+float* float_array_calloc_aligned(size_t size) {
   return (float*) calloc_aligned(ALIGNMENT, size * sizeof(float));
 }
 

@@ -10,11 +10,10 @@
 #include <string.h>
 
 // calloc_aligned combines calloc and alloc_aligned
-inline void* calloc_aligned(size_t alignment, size_t size) {
+void* calloc_aligned(size_t alignment, size_t size) {
   void* p = aligned_alloc(alignment, size);
   memset(p, 0, size);
   return p;
-
 }
 
 // If the architecture supports vector size 512 (AVX-512 instructions)

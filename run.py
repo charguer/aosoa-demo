@@ -18,13 +18,13 @@ if __name__ == "__main__":
     os.system('mkdir -p bin')
     for script in scripts:  
         options = ''
-        # options = '-fopt-info-vec-all 2> bin/' + script + '_infos.txt'
+        options = '-fopt-info-vec-all 2> bin/' + script + '_infos.txt'
         command = 'gcc -std=c11 -march=native -Wall -O3 -o bin/' + script + ' src/' + script + '.c ' + options
         print(command)
         os.system(command)
         total[script] = 0
 
-    # quit()
+    quit()
 
     for mode in modes:
         for script in scripts:
