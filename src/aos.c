@@ -1,9 +1,4 @@
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
-
-#define NUM_PARTICLES (1 << 27)
-#define NB_POPULATE (1 << 22)
+#include "common.h"
 
 typedef struct {
   // Position

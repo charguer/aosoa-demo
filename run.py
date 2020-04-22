@@ -9,10 +9,14 @@ if __name__ == "__main__":
     scripts = ['aos', 'soa', 'aosoa']
     modes = ['updates', 'populate']
 
+    #scripts = ['aosoa'] 
+    # modes = ['updates']
+
     total = {}
 
     os.system('mkdir -p bin')
     for script in scripts:
+    #-msse2  -mavx512f   -march=native
         os.system('gcc -Wall -O3 -o bin/' + script + ' src/' + script +'.c')
         total[script] = 0
 

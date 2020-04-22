@@ -1,26 +1,23 @@
-#include <stdlib.h>
-#include <time.h>
-#include <string.h>
+#include "common.h"
 
 #define BLOCK_SIZE (1 << 10)
 #define NB_BLOCKS (1 << 17)
-#define NUM_PARTICLES (1 << 27) // (= BLOCK_SIZE * NB_BLOCKS)
-#define NB_POPULATE (1 << 22)
+// (NUM_PARTICLES = BLOCK_SIZE * NB_BLOCKS)
 
 typedef struct {
   // Position
-  float x[BLOCK_SIZE];
-  float y[BLOCK_SIZE];
-  float z[BLOCK_SIZE];
+  float x[BLOCK_SIZE] ALIGNED;
+  float y[BLOCK_SIZE] ALIGNED;
+  float z[BLOCK_SIZE] ALIGNED;
   // Velocity
-  float vx[BLOCK_SIZE];
-  float vy[BLOCK_SIZE];
-  float vz[BLOCK_SIZE];
+  float vx[BLOCK_SIZE] ALIGNED;
+  float vy[BLOCK_SIZE] ALIGNED;
+  float vz[BLOCK_SIZE] ALIGNED;
   // Charge
-  float c[BLOCK_SIZE];
+  float c[BLOCK_SIZE] ALIGNED;
   // Mass, volume
-  float m[BLOCK_SIZE];
-  float v[BLOCK_SIZE];
+  float m[BLOCK_SIZE] ALIGNED;
+  float v[BLOCK_SIZE] ALIGNED;
 } particle_block;
 
 particle_block* data;
