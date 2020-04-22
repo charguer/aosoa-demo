@@ -1,8 +1,7 @@
 #include "common.h"
 
 #define BLOCK_SIZE (1 << 10)
-#define NB_BLOCKS (1 << 17)
-// (NUM_PARTICLES = BLOCK_SIZE * NB_BLOCKS)
+#define NB_BLOCKS (NUM_PARTICLES / BLOCK_SIZE)
 
 typedef struct {
   // Position
@@ -20,13 +19,15 @@ typedef struct {
   ALIGNED float v[BLOCK_SIZE];
 } particle_block;
 
-particle_block* data;
+ALIGNED particle_block* data;
 
 int main(int argc, char **argv) {
+  if (argc < 2) { return 1; }
   char *mode = argv[1];
 
   data = (particle_block*) calloc_aligned(ALIGNMENT, NB_BLOCKS * sizeof(particle_block));
 
+  start_clock();
   if (strcmp(mode, "updates") == 0) {
     // Apply an in-place modification to every particle.
     for (int i = 0; i < NB_BLOCKS; i++) {
@@ -57,6 +58,8 @@ int main(int argc, char **argv) {
       data[i].v[j]  = 1.;
     }
   }
+
+  stop_clock_and_report();
 
   free(data);
 

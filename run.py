@@ -2,7 +2,7 @@
 
 import os
 import sys
-import time
+import subprocess
 
 if __name__ == "__main__":
     # To run only specific benchmarks, restrict the [scripts] and [modes] array
@@ -17,9 +17,8 @@ if __name__ == "__main__":
     os.system('rm -f bin/*')
     os.system('mkdir -p bin')
     for script in scripts:  
-        options = ''
         options = '-fopt-info-vec-all 2> bin/' + script + '_infos.txt'
-        command = 'gcc -std=c11 -march=native -Wall -O3 -o bin/' + script + ' src/' + script + '.c ' + options
+        command = 'gcc-9.1 -std=c11 -march=native -Wall -O3 -o bin/' + script + ' src/' + script + '.c ' + options
         print(command)
         os.system(command)
         total[script] = 0
@@ -28,12 +27,11 @@ if __name__ == "__main__":
 
     for mode in modes:
         for script in scripts:
-            start = time.time()
-            os.system('./bin/' + script + ' ' + mode)
-            end = time.time()
-            t = end - start
-            total[script] += t
-            print(mode + ' using ' + script + ': %.02f' % t)
+            program = './bin/' + script
+            result = subprocess.Popen([program, mode], stdout=subprocess.PIPE).communicate()[0]
+            exectime = float(result)
+            print(mode + ' using ' + script + ': %.02f' % exectime)
+            total[script] += exectime
         print('')
 
     for script in scripts:

@@ -1,6 +1,6 @@
 
 // Benchmark parameters
-#define NUM_PARTICLES (1 << 27)
+#define NUM_PARTICLES (1 << 29)
 #define NB_POPULATE (1 << 22)
 
 
@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <stdio.h>
 
 // calloc_aligned combines calloc and alloc_aligned
 void* calloc_aligned(size_t alignment, size_t size) {
@@ -30,3 +31,16 @@ void* calloc_aligned(size_t alignment, size_t size) {
 // For an allocation to be aligned, use the macro ALIGNED before a type.
 #define ALIGNED _Alignas(ALIGNMENT)
 // Note: before C11, syntax was "type __attribute__((aligned(ALIGNMENT)))"
+
+// For measuring the execution time
+clock_t time_start;
+
+void start_clock() {
+  time_start = clock();
+}
+
+void stop_clock_and_report() {
+  clock_t time_end = clock();
+  double cpu_time_used = ((double) (time_end - time_start)) / CLOCKS_PER_SEC;
+  printf("%.3f\n", cpu_time_used);
+}

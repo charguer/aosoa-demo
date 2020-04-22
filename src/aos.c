@@ -14,10 +14,12 @@ typedef struct {
 particle* data;
 
 int main(int argc, char **argv) {
+  if (argc < 2) { return 1; }
   char* mode = argv[1];
 
   data = (particle*) calloc_aligned(ALIGNMENT, NUM_PARTICLES * sizeof(particle));
 
+  start_clock();
   if (strcmp(mode, "updates") == 0) {
     // Apply an in-place modification to every particle.
     for (int i = 0; i < NUM_PARTICLES; i++) {
@@ -42,6 +44,7 @@ int main(int argc, char **argv) {
     }
   }
 
+  stop_clock_and_report();
   free(data);
 
   return 0;
