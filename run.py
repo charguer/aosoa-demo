@@ -14,11 +14,15 @@ if __name__ == "__main__":
 
     total = {}
 
+    os.system('rm -f bin/*')
     os.system('mkdir -p bin')
-    for script in scripts:
-    #-msse2  -mavx512f   -march=native
-        os.system('gcc -Wall -O3 -o bin/' + script + ' src/' + script +'.c')
+    for script in scripts:  
+        options = ''
+        # options = '-fopt-info-vec-all 2> bin/' + script + '_infos.txt'
+        os.system('gcc -std=c11 -march=native -Wall -O3 -o bin/' + script + ' src/' + script + '.c ' + options)
         total[script] = 0
+
+    # quit()
 
     for mode in modes:
         for script in scripts:

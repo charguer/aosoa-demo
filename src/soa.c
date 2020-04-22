@@ -18,18 +18,22 @@ typedef struct {
 
 particles data;
 
+inline float* float_array_calloc_aligned(size_t size) {
+  return (float*) calloc_aligned(ALIGNMENT, size * sizeof(float));
+}
+
 int main(int argc, char **argv) {
   char* mode = argv[1];
 
-  data.x  = (float *) calloc(NUM_PARTICLES, sizeof(float));
-  data.y  = (float *) calloc(NUM_PARTICLES, sizeof(float));
-  data.z  = (float *) calloc(NUM_PARTICLES, sizeof(float));
-  data.vx = (float *) calloc(NUM_PARTICLES, sizeof(float));
-  data.vy = (float *) calloc(NUM_PARTICLES, sizeof(float));
-  data.vz = (float *) calloc(NUM_PARTICLES, sizeof(float));
-  data.c  = (float *) calloc(NUM_PARTICLES, sizeof(float));
-  data.m  = (float *) calloc(NUM_PARTICLES, sizeof(float));
-  data.v  = (float *) calloc(NUM_PARTICLES, sizeof(float));
+  data.x  = float_array_calloc_aligned(NUM_PARTICLES);
+  data.y  = float_array_calloc_aligned(NUM_PARTICLES);
+  data.z  = float_array_calloc_aligned(NUM_PARTICLES);
+  data.vx = float_array_calloc_aligned(NUM_PARTICLES);
+  data.vy = float_array_calloc_aligned(NUM_PARTICLES);
+  data.vz = float_array_calloc_aligned(NUM_PARTICLES);
+  data.c  = float_array_calloc_aligned(NUM_PARTICLES);
+  data.m  = float_array_calloc_aligned(NUM_PARTICLES);
+  data.v  = float_array_calloc_aligned(NUM_PARTICLES);
 
   if (strcmp(mode, "updates") == 0) {
     // Apply an in-place modification to every particle.

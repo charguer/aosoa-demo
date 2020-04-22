@@ -6,18 +6,18 @@
 
 typedef struct {
   // Position
-  float x[BLOCK_SIZE] ALIGNED;
-  float y[BLOCK_SIZE] ALIGNED;
-  float z[BLOCK_SIZE] ALIGNED;
+  ALIGNED float x[BLOCK_SIZE];
+  ALIGNED float y[BLOCK_SIZE];
+  ALIGNED float z[BLOCK_SIZE];
   // Velocity
-  float vx[BLOCK_SIZE] ALIGNED;
-  float vy[BLOCK_SIZE] ALIGNED;
-  float vz[BLOCK_SIZE] ALIGNED;
+  ALIGNED float vx[BLOCK_SIZE];
+  ALIGNED float vy[BLOCK_SIZE];
+  ALIGNED float vz[BLOCK_SIZE];
   // Charge
-  float c[BLOCK_SIZE] ALIGNED;
+  ALIGNED float c[BLOCK_SIZE];
   // Mass, volume
-  float m[BLOCK_SIZE] ALIGNED;
-  float v[BLOCK_SIZE] ALIGNED;
+  ALIGNED float m[BLOCK_SIZE];
+  ALIGNED float v[BLOCK_SIZE];
 } particle_block;
 
 particle_block* data;
@@ -25,7 +25,7 @@ particle_block* data;
 int main(int argc, char **argv) {
   char *mode = argv[1];
 
-  data = (particle_block*) calloc(NB_BLOCKS, sizeof(particle_block));
+  data = (particle_block*) calloc_aligned(ALIGNMENT, NB_BLOCKS * sizeof(particle_block));
 
   if (strcmp(mode, "updates") == 0) {
     // Apply an in-place modification to every particle.

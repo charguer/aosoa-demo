@@ -16,7 +16,7 @@ particle* data;
 int main(int argc, char **argv) {
   char* mode = argv[1];
 
-  data = (particle*) calloc(NUM_PARTICLES, sizeof(particle));
+  data = (particle*) calloc_aligned(ALIGNMENT, NUM_PARTICLES * sizeof(particle));
 
   if (strcmp(mode, "updates") == 0) {
     // Apply an in-place modification to every particle.
