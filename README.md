@@ -82,7 +82,7 @@ To play the demo, execute the `run.py` script which:
    ./run.sh
 ```
 
-The demo runs for approximately 20 to 30 seconds in total.
+The demo runs for approximately 30 seconds in total.
 
 
 # Example results
@@ -90,17 +90,17 @@ The demo runs for approximately 20 to 30 seconds in total.
 Example results on a standard laptop hardware.
 
 ```
-updates using aos: 0.93
-updates using soa: 0.36
-updates using aosoa: 0.39
+updates using aos: 1.94
+updates using soa: 0.75
+updates using aosoa: 0.78
 
-populate using aos: 0.55
-populate using soa: 2.83
-populate using aosoa: 0.85
+populate using aos: 0.61
+populate using soa: 3.32
+populate using aosoa: 0.99
 
-total using aos: 1.47
-total using soa: 3.19
-total using aosoa: 1.24
+total using aos: 2.54
+total using soa: 4.07
+total using aosoa: 1.76
 ```
 
 Note that the binary actually run for longer than the reported execution time
