@@ -24,7 +24,7 @@ if __name__ == "__main__":
         os.system(command)
         total[script] = 0
 
-    quit()
+    # quit()
 
     for mode in modes:
         for script in scripts:
