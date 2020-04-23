@@ -1,8 +1,7 @@
 
 // Benchmark parameters
 #define NUM_PARTICLES (1 << 27) // must be a multiple of 1<<10.
-#define NB_POPULATE (1 << 22)
-
+#define NB_POPULATE (NUM_PARTICLES >> 6) // (1 << 21)
 
 // Common includes
 #include <stdlib.h>

@@ -56,6 +56,9 @@ to random values, the other fields are set to constant values.
 For each scenario, we measure the execution time, excluding the time required
 for allocating and initializing the data.
 
+The parameters are chosen in such a way that the two scenarios have roughly
+the same execution time when considering the fastest program for each scenario.
+
 
 # Source code
 
