@@ -67,19 +67,22 @@ A few common constants are shared in `src/common.h`.
 
 # Running the demo
 
-To play the demo, execute the `run.py` script which:
+The demo about 4.5GB of RAM. If this is too much for your system,
+or if your system can accomodate more, adjust the first line of
+the file `src/common.h`, e.g. replacing 27 with 26 or 28.
+
+```
+   #define NUM_PARTICLES (1 << 27) // must be a multiple of 1<<10
+```
+
+Execute the command `make` to:
 
    - compiles the program using GCC (a recent version is better),
    - executes the two scenarios with AoS, SoA, and AoSoA,
    - report the sum of the execution time over the two scenarios.
 
 ```
-   python run.py  
-
-   # possibly: python3 run.py
-
-   # if you don't have Python installed, use the simplified script:
-   ./run.sh
+   make
 ```
 
 The demo runs for approximately 30 seconds in total.
