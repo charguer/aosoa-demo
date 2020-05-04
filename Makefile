@@ -1,7 +1,7 @@
 
 .PHONY: all build run clean
 
-SRC=aos soa aosoa
+SRC=aos soa aosoa aos_with_tiling
 PROGS=$(addprefix bin/,$(SRC:=.out))
 
 all: run

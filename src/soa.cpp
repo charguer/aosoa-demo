@@ -1,4 +1,4 @@
-#include "common.h"
+#include "common_cpp.h"
 
 float* float_array_calloc_aligned(size_t size) {
   return (float*) calloc_aligned(ALIGNMENT, size * sizeof(float));
@@ -18,31 +18,33 @@ typedef struct {
   // Mass, volume
   ALIGNED float* m;
   ALIGNED float* v;
+
+  void alloc() {
+    x  = float_array_calloc_aligned(NUM_PARTICLES);
+    y  = float_array_calloc_aligned(NUM_PARTICLES);
+    z  = float_array_calloc_aligned(NUM_PARTICLES);
+    vx = float_array_calloc_aligned(NUM_PARTICLES);
+    vy = float_array_calloc_aligned(NUM_PARTICLES);
+    vz = float_array_calloc_aligned(NUM_PARTICLES);
+    c  = float_array_calloc_aligned(NUM_PARTICLES);
+    m  = float_array_calloc_aligned(NUM_PARTICLES);
+    v  = float_array_calloc_aligned(NUM_PARTICLES);
+  }
+
+  void free() {
+    free(x);
+    free(y);
+    free(z);
+    free(vx);
+    free(vy);
+    free(vz);
+    free(c);
+    free(m);
+    free(v);
+  }
+
 } particles;
 
-void particles_alloc(particles* p) {
-  p->x  = float_array_calloc_aligned(NUM_PARTICLES);
-  p->y  = float_array_calloc_aligned(NUM_PARTICLES);
-  p->z  = float_array_calloc_aligned(NUM_PARTICLES);
-  p->vx = float_array_calloc_aligned(NUM_PARTICLES);
-  p->vy = float_array_calloc_aligned(NUM_PARTICLES);
-  p->vz = float_array_calloc_aligned(NUM_PARTICLES);
-  p->c  = float_array_calloc_aligned(NUM_PARTICLES);
-  p->m  = float_array_calloc_aligned(NUM_PARTICLES);
-  p->v  = float_array_calloc_aligned(NUM_PARTICLES);
-}
-
-void particles_free(particles* p) {
-  free(p->x);
-  free(p->y);
-  free(p->z);
-  free(p->vx);
-  free(p->vy);
-  free(p->vz);
-  free(p->c);
-  free(p->m);
-  free(p->v);
-}
 
 particles data;
 
@@ -50,7 +52,7 @@ int main(int argc, char **argv) {
   if (argc < 2) { return 1; }
   char* mode = argv[1];
 
-  particles_alloc(&data);
+  data.alloc();
 
   start_clock();
   if (strcmp(mode, "updates") == 0) {

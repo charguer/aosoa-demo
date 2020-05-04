@@ -1,7 +1,7 @@
 #!/bin/bash
 
 declare -a modes=("updates" "populate")
-declare -a progs=("aos" "soa" "aosoa")
+declare -a progs=("aos" "soa" "aosoa" "aos_with_tiling")
 declare -A times
 
 for prog in "${progs[@]}"; do
